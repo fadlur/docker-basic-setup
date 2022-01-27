@@ -5,7 +5,7 @@ networks:
 
 services:
   app:
-    container_name: 'leben-app'
+    container_name: 'docker-app'
     build:
       args:
         user: fadlur
@@ -20,7 +20,7 @@ services:
       - laravel
 
   mysql:
-    container_name: 'leben-mysql'
+    container_name: 'docker-mysql'
     platform: linux/x86_64/v8
     image: mysql/mysql-server:8.0.23
     ports:
@@ -30,14 +30,14 @@ services:
     networks:
       - laravel
     environment:
-      MYSQL_DATABASE: leben
+      MYSQL_DATABASE: docker
       MYSQL_USER: root
       MYSQL_PASSWORD: secret
       MYSQL_ROOT_PASSWORD: admin
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
   nginx:
-    container_name: 'leben-nginx'
+    container_name: 'docker-nginx'
     image: nginx:alpine
     ports:
       - "8080:80"
@@ -49,7 +49,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: 'leben-phpmyadmin'
+    container_name: 'docker-phpmyadmin'
     links:
       - mysql
     environment:
